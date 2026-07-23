@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MUSÉ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- PRESENTACIÓN -->
+
+    <section id="inicio" class="hero">
+        <h1>MUSÉ</h1>
+        <p>JEWELRY</p>
+    </section>
+
+    <!-- BARRA SUPERIOR -->
+
+    <header class="navbar">
+
+        <div class="menu-izquierda">
+
+            <a href="#inicio">Inicio</a>
+
+            <div class="menu-item">
+                <a href="#">Hombre</a>
+
+                <div class="submenu">
+                    <a href="#">Collares</a>
+                    <a href="#">Pulseras</a>
+                    <a href="#">Anillos</a>
+                    <a href="#">Aritos</a>
+                    <a href="#">Dijes</a>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a href="#">Mujer</a>
+
+                <div class="submenu">
+                    <a href="#">Collares</a>
+                    <a href="#">Pulseras</a>
+                    <a href="#">Brazaletes</a>
+                    <a href="#">Anillos</a>
+                    <a href="#">Aros</a>
+                    <a href="#">Dijes</a>
+                </div>
+            </div>
+
+            <a href="como-comprar.html">Cómo comprar</a>
+
+        </div>
+
+        <!-- LOGO -->
+
+        <a href="#inicio" class="logo" aria-label="Volver al inicio">
+            <img src="imagenes web/logo-muse.PNG" alt="Logo de MUSÉ">
+        </a>
+
+        <!-- BUSCADOR Y CARRITO -->
+
+        <div class="acciones-navbar">
+
+            <form class="menu-derecha" id="formularioBusqueda">
+
+                <input
+                    type="search"
+                    id="campoBusqueda"
+                    placeholder="¿Qué estás buscando?"
+                    aria-label="Buscar productos">
+
+                <button type="submit" aria-label="Buscar">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5"></circle>
+                        <line x1="16" y1="16" x2="21" y2="21"></line>
+                    </svg>
+
+                </button>
+
+            </form>
+
+            <button
+                class="boton-carrito"
+                id="abrirCarrito"
+                type="button"
+                aria-label="Abrir carrito de compras">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 8h12l1 13H5L6 8z"></path>
+                    <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+                </svg>
+
+                <span class="contador-carrito" id="contadorCarrito">0</span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- SEGUNDA PANTALLA: MEN / WOMEN -->
+
+    <section class="contenido">
+
+        <div class="categoria hombre">
+
+            <img src="imagenes web/luca joya.jpeg" alt="Colección para hombre">
+
+            <div class="overlay">
+                <h2>MEN</h2>
+            </div>
+
+        </div>
+
+        <div class="categoria mujer">
+
+            <img src="imagenes web/sofia joya.jpeg" alt="Colección para mujer">
+
+            <div class="overlay">
+                <h2>WOMEN</h2>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TERCERA PANTALLA: CATEGORÍAS -->
+
+    <section class="catalogo">
+
+        <div class="catalogo-encabezado">
+            <p>EXPLORÁ NUESTRAS COLECCIONES</p>
+            <h2>CATEGORÍAS</h2>
+        </div>
+
+        <div class="carrusel-contenedor">
+
+            <button
+                class="flecha flecha-izquierda"
+                id="flechaIzquierda"
+                type="button"
+                aria-label="Mover hacia la izquierda">
+
+                &#8592;
+
+            </button>
+
+            <div class="carrusel" id="carruselCatalogo">
+
+                <a href="collares.html" class="tarjeta-catalogo">
+
+                    <img
+                        src="imagenes web/aros-catalogo.png"
+                        alt="Colección de aros">
+
+                    <div class="tarjeta-texto">
+                        <h3>AROS</h3>
+                        <span>Ver colección</span>
+                    </div>
+
+                </a>
+
+                <a href="collares.html" class="tarjeta-catalogo">
+
+                    <img
+                        src="imagenes web/collares-catalogo.png"
+                        alt="Colección de collares">
+
+                    <div class="tarjeta-texto">
+                        <h3>COLLARES</h3>
+                        <span>Ver colección</span>
+                    </div>
+
+                </a>
+
+                <a href="pulseras.html" class="tarjeta-catalogo">
+
+                    <img
+                        src="imagenes web/pulseras-catalogo.png"
+                        alt="Colección de pulseras">
+
+                    <div class="tarjeta-texto">
+                        <h3>PULSERAS</h3>
+                        <span>Ver colección</span>
+                    </div>
+
+                </a>
+
+                <a href="anillos.html" class="tarjeta-catalogo">
+
+                    <img
+                        src="imagenes web/anillos-catalogo.png"
+                        alt="Colección de anillos">
+
+                    <div class="tarjeta-texto">
+                        <h3>ANILLOS</h3>
+                        <span>Ver colección</span>
+                    </div>
+
+                </a>
+
+                <a href="dijes.html" class="tarjeta-catalogo">
+
+                    <img
+                        src="imagenes web/dijes-catalogo.png"
+                        alt="Colección de dijes">
+
+                    <div class="tarjeta-texto">
+                        <h3>DIJES</h3>
+                        <span>Ver colección</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+            <button
+                class="flecha flecha-derecha"
+                id="flechaDerecha"
+                type="button"
+                aria-label="Mover hacia la derecha">
+
+                &#8594;
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+
+    <footer class="footer">
+
+        <div class="footer-contenido">
+
+            <div class="footer-columna">
+
+                <h3>Atención al cliente</h3>
+
+                <a href="#">Centro de ayuda</a>
+                <a href="#">Contacto</a>
+                <a href="#">Preguntas frecuentes</a>
+                <a href="#">Cambios y devoluciones</a>
+
+            </div>
+
+            <div class="footer-columna">
+
+                <h3>Hombres</h3>
+
+                <a href="#">Collares</a>
+                <a href="#">Pulseras</a>
+                <a href="#">Anillos</a>
+                <a href="#">Aritos</a>
+                <a href="#">Dijes</a>
+
+            </div>
+
+            <div class="footer-columna">
+
+                <h3>Mujeres</h3>
+
+                <a href="#">Collares</a>
+                <a href="#">Pulseras</a>
+                <a href="#">Brazaletes</a>
+                <a href="#">Anillos</a>
+                <a href="#">Aros</a>
+                <a href="#">Dijes</a>
+
+            </div>
+
+            <div class="footer-columna footer-marca">
+
+                <h2>MUSÉ</h2>
+
+                <p>
+                    Joyería en plata 925, oro 18K, piezas enchapadas
+                    y acero inoxidable.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-info">
+
+            <div class="footer-pagos">
+
+                <span>Medios de pago</span>
+
+                <div class="pago">VISA</div>
+                <div class="pago">MC</div>
+                <div class="pago">AMEX</div>
+                <div class="pago">MP</div>
+
+            </div>
+
+            <div class="footer-envios">
+
+                <span>Medios de envío</span>
+
+                <div class="envio">Andreani</div>
+                <div class="envio">Correo Argentino</div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-final">
+
+            <p>
+                Defensa de las y los consumidores · Botón de arrepentimiento
+            </p>
+
+            <p>
+                © 2026 MUSÉ. Todos los derechos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- CARRITO LATERAL -->
+
+    <div class="fondo-carrito" id="fondoCarrito"></div>
+
+    <aside
+        class="carrito-lateral"
+        id="carritoLateral"
+        aria-hidden="true">
+
+        <div class="carrito-encabezado">
+
+            <div>
+
+                <p class="carrito-etiqueta">
+                    TU SELECCIÓN
+                </p>
+
+                <h2>
+                    Carrito de compras
+                </h2>
+
+            </div>
+
+            <button
+                class="cerrar-carrito"
+                id="cerrarCarrito"
+                type="button"
+                aria-label="Cerrar carrito">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="5" y1="5" x2="19" y2="19"></line>
+                    <line x1="19" y1="5" x2="5" y2="19"></line>
+                </svg>
+
+            </button>
+
+        </div>
+
+        <div
+            class="carrito-productos"
+            id="carritoProductos">
+        </div>
+
+        <div
+            class="carrito-vacio"
+            id="carritoVacio">
+
+            <div class="icono-carrito-vacio">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 8h12l1 13H5L6 8z"></path>
+                    <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+                </svg>
+
+            </div>
+
+            <h3>
+                Tu carrito está vacío
+            </h3>
+
+            <p>
+                Todavía no agregaste ningún producto.
+            </p>
+
+            <button
+                class="boton-seguir-comprando"
+                id="seguirComprando"
+                type="button">
+
+                Seguir comprando
+
+            </button>
+
+        </div>
+
+        <div
+            class="carrito-resumen"
+            id="carritoResumen">
+
+            <div class="fila-total">
+
+                <span>Total</span>
+
+                <strong id="precioTotalCarrito">
+                    $0
+                </strong>
+
+            </div>
+
+            <p class="texto-envio-carrito">
+                El costo de envío se calculará al iniciar la compra.
+            </p>
+
+            <button
+                class="boton-iniciar-compra"
+                id="iniciarCompra"
+                type="button">
+
+                Iniciar compra
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
