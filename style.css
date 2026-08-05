@@ -1931,3 +1931,356 @@ body.carrito-abierto {
     }
 
 }
+
+/* ===========================
+   MENÚ HAMBURGUESA
+=========================== */
+
+.boton-menu-mobile {
+    display: none;
+}
+
+.fondo-menu-mobile,
+.menu-mobile {
+    display: none;
+}
+
+
+/* ===========================
+   MENÚ MOBILE
+=========================== */
+
+@media (max-width: 750px) {
+
+    /* NAVBAR */
+
+    .navbar {
+        position: sticky;
+        top: 0;
+
+        height: 70px;
+        padding: 0 16px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        z-index: 1500;
+    }
+
+    .menu-izquierda {
+        display: none;
+    }
+
+    /* BOTÓN DE TRES RAYAS */
+
+    .boton-menu-mobile {
+        position: relative;
+
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 5px;
+
+        background: transparent;
+        border: none;
+
+        cursor: pointer;
+
+        z-index: 2;
+    }
+
+    .boton-menu-mobile span {
+        width: 23px;
+        height: 1px;
+
+        display: block;
+
+        background: var(--dorado-muse);
+
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+    /* LOGO CENTRADO */
+
+    .logo {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        width: 82px;
+        height: 58px;
+
+        margin: 0;
+
+        transform: translate(-50%, -50%);
+    }
+
+    .logo img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+    }
+
+    /* CARRITO A LA DERECHA */
+
+    .acciones-navbar {
+        margin-left: auto;
+    }
+
+    .menu-derecha {
+        display: none;
+    }
+
+    .boton-carrito {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* FONDO OSCURO */
+
+    .fondo-menu-mobile {
+        position: fixed;
+        inset: 0;
+
+        display: block;
+
+        background: rgba(0, 0, 0, 0.55);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+            opacity 0.35s ease,
+            visibility 0.35s ease;
+
+        z-index: 1996;
+    }
+
+    .fondo-menu-mobile.activo {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* PANEL LATERAL */
+
+    .menu-mobile {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: min(86%, 390px);
+        height: 100dvh;
+
+        display: flex;
+        flex-direction: column;
+
+        background: var(--verde-muse);
+        color: var(--dorado-muse);
+
+        transform: translateX(-100%);
+
+        transition: transform 0.4s ease;
+
+        z-index: 1997;
+
+        box-shadow: 15px 0 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .menu-mobile.abierto {
+        transform: translateX(0);
+    }
+
+    /* ENCABEZADO */
+
+    .menu-mobile-encabezado {
+        min-height: 82px;
+
+        padding: 0 24px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border-bottom: 1px solid rgba(200, 169, 106, 0.25);
+    }
+
+    .menu-mobile-encabezado p {
+        font-size: 11px;
+        font-weight: 500;
+
+        letter-spacing: 4px;
+    }
+
+    /* BOTÓN CERRAR */
+
+    .cerrar-menu-mobile {
+        position: relative;
+
+        width: 42px;
+        height: 42px;
+
+        background: transparent;
+        border: none;
+
+        cursor: pointer;
+    }
+
+    .cerrar-menu-mobile span {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        width: 24px;
+        height: 1px;
+
+        background: var(--dorado-muse);
+    }
+
+    .cerrar-menu-mobile span:first-child {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .cerrar-menu-mobile span:last-child {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    /* ENLACES */
+
+    .menu-mobile-contenido {
+        flex: 1;
+
+        padding: 14px 24px;
+
+        overflow-y: auto;
+    }
+
+    .enlace-mobile-principal,
+    .boton-submenu-mobile {
+        width: 100%;
+        min-height: 58px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background: transparent;
+        color: var(--dorado-muse);
+
+        border: none;
+        border-bottom: 1px solid rgba(200, 169, 106, 0.18);
+
+        text-decoration: none;
+        text-transform: uppercase;
+
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+
+        letter-spacing: 1.5px;
+
+        cursor: pointer;
+    }
+
+    .boton-submenu-mobile {
+        text-align: left;
+    }
+
+    .icono-desplegar {
+        font-size: 22px;
+        font-weight: 300;
+
+        transition: transform 0.3s ease;
+    }
+
+    .grupo-menu-mobile.abierto .icono-desplegar {
+        transform: rotate(45deg);
+    }
+
+    /* SUBMENÚ */
+
+    .submenu-mobile {
+        max-height: 0;
+
+        overflow: hidden;
+
+        padding-left: 18px;
+
+        transition:
+            max-height 0.4s ease,
+            padding 0.4s ease;
+    }
+
+    .grupo-menu-mobile.abierto .submenu-mobile {
+        max-height: 400px;
+
+        padding-top: 7px;
+        padding-bottom: 12px;
+    }
+
+    .submenu-mobile a {
+        min-height: 42px;
+
+        display: flex;
+        align-items: center;
+
+        color: var(--dorado-suave);
+
+        text-decoration: none;
+        text-transform: uppercase;
+
+        font-family: "Inter", sans-serif;
+        font-size: 11px;
+
+        letter-spacing: 1.2px;
+
+        border-bottom: 1px solid rgba(200, 169, 106, 0.1);
+    }
+
+    /* MARCA ABAJO */
+
+    .menu-mobile-marca {
+        padding: 22px 24px 28px;
+
+        border-top: 1px solid rgba(200, 169, 106, 0.22);
+    }
+
+    .menu-mobile-marca strong {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-family: "Cormorant Garamond", serif;
+        font-size: 27px;
+        font-weight: 400;
+
+        letter-spacing: 6px;
+    }
+
+    .menu-mobile-marca p {
+        max-width: 280px;
+
+        color: var(--dorado-suave);
+
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+    body.menu-mobile-abierto {
+        overflow: hidden;
+    }
+
+}

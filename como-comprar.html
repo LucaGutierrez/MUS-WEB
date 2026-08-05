@@ -15,40 +15,7 @@
 <!-- ===========================
          BARRA SUPERIOR
     ============================ -->
-<header class="navbar">
-<nav class="menu-izquierda"><a href="index.html#inicio">Inicio</a><div class="menu-item"><a href="catalogo.html?genero=hombre">Hombre</a><div class="submenu"><a href="catalogo.html?genero=hombre&amp;categoria=collares">Collares</a><a href="catalogo.html?genero=hombre&amp;categoria=pulseras">Pulseras</a><a href="catalogo.html?genero=hombre&amp;categoria=anillos">Anillos</a><a href="catalogo.html?genero=hombre&amp;categoria=aritos">Aritos</a><a href="catalogo.html?genero=hombre&amp;categoria=dijes">Dijes</a></div></div><div class="menu-item"><a href="catalogo.html?genero=mujer">Mujer</a><div class="submenu"><a href="catalogo.html?genero=mujer&amp;categoria=collares">Collares</a><a href="catalogo.html?genero=mujer&amp;categoria=pulseras">Pulseras</a><a href="catalogo.html?genero=mujer&amp;categoria=anillos">Anillos</a><a href="catalogo.html?genero=mujer&amp;categoria=aritos">Aritos</a><a href="catalogo.html?genero=mujer&amp;categoria=dijes">Dijes</a></div></div><a class="enlace-activo" href="como-comprar.html">Cómo comprar</a></nav>
-<!-- LOGO -->
-<a aria-label="Volver al inicio" class="logo" href="index.html#inicio">
-<img alt="Logo de MUSÉ" src="imagenes web/logo-muse.PNG"/>
-</a>
-<!-- BUSCADOR -->
-<div class="acciones-navbar">
-<!-- BUSCADOR -->
-<form class="menu-derecha" id="formularioBusqueda">
-<input aria-label="Buscar productos" id="campoBusqueda" placeholder="¿Qué estás buscando?" type="search"/>
-<button aria-label="Buscar" type="submit">
-<svg aria-hidden="true" viewbox="0 0 24 24">
-<circle cx="11" cy="11" r="6.5">
-</circle>
-<line x1="16" x2="21" y1="16" y2="21">
-</line>
-</svg>
-</button>
-</form>
-<!-- BOTÓN DEL CARRITO -->
-<button aria-label="Abrir carrito de compras" class="boton-carrito" id="abrirCarrito" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24">
-<path d="M6 8h12l1 13H5L6 8z"></path>
-<path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
-</svg>
-<span class="contador-carrito" id="contadorCarrito">
-
-            0
-
-        </span>
-</button>
-</div>
-</header>
+<div id="navbarCompartido"></div>
 <!-- ===========================
          ENCABEZADO DE LA PÁGINA
     ============================ -->
@@ -296,60 +263,7 @@
 <!-- ===========================
          PIE DE PÁGINA
     ============================ -->
-<footer class="footer">
-<div class="footer-contenido">
-<div class="footer-columna">
-<h3>
-                    Atención al cliente
-                </h3>
-<a href="#">
-                    Centro de ayuda
-                </a>
-<a href="#">
-                    Contacto
-                </a>
-<a href="#">
-                    Preguntas frecuentes
-                </a>
-<a href="#">
-                    Cambios y devoluciones
-                </a>
-</div>
-<div class="footer-columna"><h3>Hombres</h3><a href="catalogo.html?genero=hombre">Ver todo</a><a href="catalogo.html?genero=hombre&amp;categoria=collares">Collares</a><a href="catalogo.html?genero=hombre&amp;categoria=pulseras">Pulseras</a><a href="catalogo.html?genero=hombre&amp;categoria=anillos">Anillos</a><a href="catalogo.html?genero=hombre&amp;categoria=aritos">Aritos</a><a href="catalogo.html?genero=hombre&amp;categoria=dijes">Dijes</a></div>
-<div class="footer-columna"><h3>Mujeres</h3><a href="catalogo.html?genero=mujer">Ver todo</a><a href="catalogo.html?genero=mujer&amp;categoria=collares">Collares</a><a href="catalogo.html?genero=mujer&amp;categoria=pulseras">Pulseras</a><a href="catalogo.html?genero=mujer&amp;categoria=anillos">Anillos</a><a href="catalogo.html?genero=mujer&amp;categoria=aritos">Aritos</a><a href="catalogo.html?genero=mujer&amp;categoria=dijes">Dijes</a></div>
-<div class="footer-columna footer-marca">
-<h2>
-                    MUSÉ
-                </h2>
-<p>
-                    Joyería en plata 925, oro 18K, piezas enchapadas
-                    y acero inoxidable.
-                </p>
-</div>
-</div>
-<div class="footer-info">
-<div class="footer-pagos"><span>Medios de pago</span><div class="pago">Transferencia</div><div class="pago">Efectivo</div><div class="pago">Mercado Pago</div></div>
-<div class="footer-envios">
-<span>
-                    Medios de envío
-                </span>
-<div class="envio">
-                    Andreani
-                </div>
-<div class="envio">
-                    Correo Argentino
-                </div>
-</div>
-</div>
-<div class="footer-final">
-<p>
-                Defensa de las y los consumidores · Botón de arrepentimiento
-            </p>
-<p>
-                © 2026 MUSÉ. Todos los derechos reservados.
-            </p>
-</div>
-</footer>
+<div id="footerCompartido"></div>
 <!-- ===========================
      CARRITO LATERAL
 =========================== -->
@@ -417,6 +331,6 @@
         </button>
 </div>
 </aside>
-<script src="script.js"></script>
+<script src="componentes.js"></script>
 </body>
 </html>
