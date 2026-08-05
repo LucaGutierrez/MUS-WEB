@@ -8,7 +8,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>MUSÉ</title>
+    <title>Catálogo | MUSÉ</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -18,28 +18,14 @@
         crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="productos.css">
 </head>
 
 <body>
-
-    <!-- ===========================
-         PRESENTACIÓN
-    ============================ -->
-
-    <section
-        id="inicio"
-        class="hero">
-
-        <h1>MUSÉ</h1>
-
-        <p>JEWELRY</p>
-
-    </section>
-
 
     <!-- ===========================
          NAVBAR
@@ -49,7 +35,7 @@
 
         <div class="menu-izquierda">
 
-            <a href="#inicio">
+            <a href="index.html#inicio">
                 Inicio
             </a>
 
@@ -79,6 +65,13 @@
                     </a>
 
                     <a
+                        href="catalogo.html?genero=hombre&categoria=dijes">
+
+                        Dijes
+
+                    </a>
+
+                    <a
                         href="catalogo.html?genero=hombre&categoria=anillos">
 
                         Anillos
@@ -89,13 +82,6 @@
                         href="catalogo.html?genero=hombre&categoria=aritos">
 
                         Aritos
-
-                    </a>
-
-                    <a
-                        href="catalogo.html?genero=hombre&categoria=dijes">
-
-                        Dijes
 
                     </a>
 
@@ -129,6 +115,13 @@
                     </a>
 
                     <a
+                        href="catalogo.html?genero=mujer&categoria=dijes">
+
+                        Dijes
+
+                    </a>
+
+                    <a
                         href="catalogo.html?genero=mujer&categoria=anillos">
 
                         Anillos
@@ -139,13 +132,6 @@
                         href="catalogo.html?genero=mujer&categoria=aritos">
 
                         Aritos
-
-                    </a>
-
-                    <a
-                        href="catalogo.html?genero=mujer&categoria=dijes">
-
-                        Dijes
 
                     </a>
 
@@ -161,12 +147,10 @@
         </div>
 
 
-        <!-- ===========================
-             LOGO
-        ============================ -->
+        <!-- LOGO -->
 
         <a
-            href="#inicio"
+            href="index.html#inicio"
             class="logo"
             aria-label="Volver al inicio">
 
@@ -177,9 +161,7 @@
         </a>
 
 
-        <!-- ===========================
-             BUSCADOR Y CARRITO
-        ============================ -->
+        <!-- BUSCADOR Y CARRITO -->
 
         <div class="acciones-navbar">
 
@@ -225,7 +207,7 @@
                 class="boton-carrito"
                 id="abrirCarrito"
                 type="button"
-                aria-label="Abrir carrito de compras">
+                aria-label="Abrir carrito">
 
                 <svg
                     viewBox="0 0 24 24"
@@ -253,217 +235,115 @@
 
 
     <!-- ===========================
-         SEGUNDA PANTALLA: MEN / WOMEN
+         CABECERA DEL CATÁLOGO
     ============================ -->
 
-    <section class="contenido">
+    <section class="cabecera-listado">
 
+        <p>
+            COLECCIÓN MUSÉ
+        </p>
 
-        <!-- HOMBRE -->
+        <h1 id="tituloCatalogo">
+            Productos
+        </h1>
 
-        <a
-            href="catalogo.html?genero=hombre"
-            class="categoria hombre">
-
-            <img
-                src="imagenes web/luca joya.jpeg"
-                alt="Colección para hombre">
-
-            <div class="overlay">
-
-                <h2>MEN</h2>
-
-            </div>
-
-        </a>
-
-
-        <!-- MUJER -->
-
-        <a
-            href="catalogo.html?genero=mujer"
-            class="categoria mujer">
-
-            <img
-                src="imagenes web/sofia joya.jpeg"
-                alt="Colección para mujer">
-
-            <div class="overlay">
-
-                <h2>WOMEN</h2>
-
-            </div>
-
-        </a>
+        <span id="cantidadCatalogo">
+            Cargando productos...
+        </span>
 
     </section>
 
 
     <!-- ===========================
-         TERCERA PANTALLA: CATEGORÍAS
+         LISTADO DE PRODUCTOS
     ============================ -->
 
-    <section class="catalogo">
+    <main class="listado-productos">
 
-        <div class="catalogo-encabezado">
+        <div class="barra-listado">
 
-            <p>
-                EXPLORÁ NUESTRAS COLECCIONES
+            <p id="cantidadListado">
+                Cargando productos...
             </p>
 
-            <h2>
-                CATEGORÍAS
-            </h2>
+            <select
+                id="ordenProductos"
+                aria-label="Ordenar productos">
+
+                <option value="destacado">
+                    Destacado
+                </option>
+
+                <option value="menor-precio">
+                    Menor precio
+                </option>
+
+                <option value="mayor-precio">
+                    Mayor precio
+                </option>
+
+            </select>
 
         </div>
 
 
-        <div class="carrusel-contenedor">
+        <!--
+            JavaScript colocará acá los productos
+            que lleguen desde Supabase.
+        -->
 
-            <button
-                class="flecha flecha-izquierda"
-                id="flechaIzquierda"
-                type="button"
-                aria-label="Mover hacia la izquierda">
+        <section
+            class="grilla-listado"
+            id="grillaProductos">
+        </section>
 
-                &#8592;
-
-            </button>
-
-
-            <div
-                class="carrusel"
-                id="carruselCatalogo">
+    </main>
 
 
-                <!-- ARITOS -->
+    <!-- ===========================
+         BENEFICIOS
+    ============================ -->
 
-                <a
-                    href="catalogo.html?categoria=aritos"
-                    class="tarjeta-catalogo">
+    <section class="beneficios-listado">
 
-                    <img
-                        src="imagenes web/aros-catalogo.png"
-                        alt="Colección de aritos">
+        <article>
 
-                    <div class="tarjeta-texto">
+            <strong>
+                Enviamos tu compra
+            </strong>
 
-                        <h3>ARITOS</h3>
+            <span>
+                Entregas a todo el país
+            </span>
 
-                        <span>
-                            Ver colección
-                        </span>
-
-                    </div>
-
-                </a>
+        </article>
 
 
-                <!-- COLLARES -->
+        <article>
 
-                <a
-                    href="catalogo.html?categoria=collares"
-                    class="tarjeta-catalogo">
+            <strong>
+                Pagá como quieras
+            </strong>
 
-                    <img
-                        src="imagenes web/collares-catalogo.png"
-                        alt="Colección de collares">
+            <span>
+                Efectivo o transferencia
+            </span>
 
-                    <div class="tarjeta-texto">
-
-                        <h3>COLLARES</h3>
-
-                        <span>
-                            Ver colección
-                        </span>
-
-                    </div>
-
-                </a>
+        </article>
 
 
-                <!-- PULSERAS -->
+        <article>
 
-                <a
-                    href="catalogo.html?categoria=pulseras"
-                    class="tarjeta-catalogo">
+            <strong>
+                Comprá con seguridad
+            </strong>
 
-                    <img
-                        src="imagenes web/pulseras-catalogo.png"
-                        alt="Colección de pulseras">
+            <span>
+                Tus datos siempre protegidos
+            </span>
 
-                    <div class="tarjeta-texto">
-
-                        <h3>PULSERAS</h3>
-
-                        <span>
-                            Ver colección
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- ANILLOS -->
-
-                <a
-                    href="catalogo.html?categoria=anillos"
-                    class="tarjeta-catalogo">
-
-                    <img
-                        src="imagenes web/anillos-catalogo.png"
-                        alt="Colección de anillos">
-
-                    <div class="tarjeta-texto">
-
-                        <h3>ANILLOS</h3>
-
-                        <span>
-                            Ver colección
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- DIJES -->
-
-                <a
-                    href="catalogo.html?categoria=dijes"
-                    class="tarjeta-catalogo">
-
-                    <img
-                        src="imagenes web/dijes-catalogo.png"
-                        alt="Colección de dijes">
-
-                    <div class="tarjeta-texto">
-
-                        <h3>DIJES</h3>
-
-                        <span>
-                            Ver colección
-                        </span>
-
-                    </div>
-
-                </a>
-
-            </div>
-
-
-            <button
-                class="flecha flecha-derecha"
-                id="flechaDerecha"
-                type="button"
-                aria-label="Mover hacia la derecha">
-
-                &#8594;
-
-            </button>
-
-        </div>
+        </article>
 
     </section>
 
@@ -531,6 +411,13 @@
                 </a>
 
                 <a
+                    href="catalogo.html?genero=hombre&categoria=dijes">
+
+                    Dijes
+
+                </a>
+
+                <a
                     href="catalogo.html?genero=hombre&categoria=anillos">
 
                     Anillos
@@ -541,13 +428,6 @@
                     href="catalogo.html?genero=hombre&categoria=aritos">
 
                     Aritos
-
-                </a>
-
-                <a
-                    href="catalogo.html?genero=hombre&categoria=dijes">
-
-                    Dijes
 
                 </a>
 
@@ -581,6 +461,13 @@
                 </a>
 
                 <a
+                    href="catalogo.html?genero=mujer&categoria=dijes">
+
+                    Dijes
+
+                </a>
+
+                <a
                     href="catalogo.html?genero=mujer&categoria=anillos">
 
                     Anillos
@@ -594,11 +481,41 @@
 
                 </a>
 
-                <a
-                    href="catalogo.html?genero=mujer&categoria=dijes">
+            </div>
 
-                    Dijes
 
+            <!-- TODAS LAS CATEGORÍAS -->
+
+            <div class="footer-columna">
+
+                <h3>
+                    Categorías
+                </h3>
+
+                <!--
+                    Estos enlaces muestran todos los productos
+                    de la categoría, sin importar si son de
+                    hombre, mujer o unisex.
+                -->
+
+                <a href="catalogo.html?categoria=collares">
+                    Todos los collares
+                </a>
+
+                <a href="catalogo.html?categoria=pulseras">
+                    Todas las pulseras
+                </a>
+
+                <a href="catalogo.html?categoria=dijes">
+                    Todos los dijes
+                </a>
+
+                <a href="catalogo.html?categoria=anillos">
+                    Todos los anillos
+                </a>
+
+                <a href="catalogo.html?categoria=aritos">
+                    Todos los aritos
                 </a>
 
             </div>
@@ -621,8 +538,6 @@
 
         </div>
 
-
-        <!-- MEDIOS DE PAGO Y ENVÍO -->
 
         <div class="footer-info">
 
@@ -841,6 +756,12 @@
     ============================ -->
 
     <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <script src="catalogo-supabase.js"></script>
 
 </body>
 
