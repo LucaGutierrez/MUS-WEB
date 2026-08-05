@@ -1,78 +1,353 @@
 /* ===========================
-   COMPONENTES COMPARTIDOS
+   CARGAR COMPONENTES
 =========================== */
 
-async function cargarComponente(
-    selector,
-    archivo
-) {
-    const contenedor =
-        document.querySelector(selector);
+async function cargarComponente(selector, archivo) {
+
+    const contenedor = document.querySelector(selector);
 
     if (!contenedor) {
         return;
     }
 
     try {
-        const respuesta =
-            await fetch(archivo);
+
+        const respuesta = await fetch(
+            `${archivo}?v=${Date.now()}`,
+            {
+                cache: "no-store"
+            }
+        );
 
         if (!respuesta.ok) {
-            throw new Error(
-                `No se pudo cargar ${archivo}`
-            );
+            throw new Error(`No se pudo cargar ${archivo}`);
         }
 
-        contenedor.innerHTML =
-            await respuesta.text();
+        contenedor.innerHTML = await respuesta.text();
 
     } catch (error) {
+
         console.error(error);
 
         contenedor.innerHTML = `
-            <p>
-                No se pudo cargar esta sección.
-            </p>
+            <p>No se pudo cargar esta sección.</p>
         `;
+
     }
+
 }
 
 
+/* ===========================
+   MENÚ MOBILE
+=========================== */
+
+
+function iniciarMenuMobile() {
+
+    const botonAbrir =
+        document.getElementById("abrirMenuMobile");
+
+    const botonCerrar =
+        document.getElementById("cerrarMenuMobile");
+
+    const menu =
+        document.getElementById("menuMobile");
+
+    const fondo =
+        document.getElementById("fondoMenuMobile");
+
+
+    if (!botonAbrir || !botonCerrar || !menu || !fondo) {
+
+        console.error(
+            "Faltan elementos del menú mobile en navbar.html"
+        );
+
+        return;
+
+    }
+
+
+    function abrirMenu() {
+
+        menu.classList.add("abierto");
+        fondo.classList.add("activo");
+
+        document.body.classList.add(
+            "menu-mobile-abierto"
+        );
+
+        menu.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        botonAbrir.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    }
+
+
+    function cerrarMenu() {
+
+        menu.classList.remove("abierto");
+        fondo.classList.remove("activo");
+
+        document.body.classList.remove(
+            "menu-mobile-abierto"
+        );
+
+        menu.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        botonAbrir.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+
+    botonAbrir.addEventListener(
+        "click",
+        abrirMenu
+    );
+
+    botonCerrar.addEventListener(
+        "click",
+        cerrarMenu
+    );
+
+    fondo.addEventListener(
+        "click",
+        cerrarMenu
+    );
+
+
+    /* HOMBRE Y MUJER */
+
+    const botonesSubmenu =
+        menu.querySelectorAll(
+            ".boton-submenu-mobile"
+        );
+
+    botonesSubmenu.forEach((boton) => {
+
+        boton.addEventListener("click", () => {
+
+            const grupo = boton.closest(
+                ".grupo-menu-mobile"
+            );
+
+            if (!grupo) {
+                return;
+            }
+
+            const estaAbierto =
+                grupo.classList.toggle("abierto");
+
+            boton.setAttribute(
+                "aria-expanded",
+                String(estaAbierto)
+            );
+
+        });
+
+    });
+
+
+    /* CERRAR AL ENTRAR A UN ENLACE */
+
+    menu.querySelectorAll("a").forEach((enlace) => {
+
+        enlace.addEventListener(
+            "click",
+            cerrarMenu
+        );
+
+    });
+
+
+    /* CERRAR CON ESCAPE */
+
+    document.addEventListener(
+        "keydown",
+        (evento) => {
+
+            if (evento.key === "Escape") {
+                cerrarMenu();
+            }
+
+        }
+    );
+
+}
+
+
+/* ===========================
+   CARGAR SCRIPT PRINCIPAL
+=========================== */
+
 function cargarScriptPrincipal() {
+
+    if (
+        document.querySelector(
+            'script[data-script-principal="true"]'
+        )
+    ) {
+        return;
+    }
 
     const script =
         document.createElement("script");
 
     script.src = "script.js";
-
-    script.defer = true;
+    script.dataset.scriptPrincipal = "true";
 
     document.body.appendChild(script);
+
 }
 
 
+/* ===========================
+   INICIAR TODO
+=========================== */
+function reconstruirContenidoMenuMobile() {
+
+    const contenidoMenu =
+        document.querySelector(
+            "#menuMobile .menu-mobile-contenido"
+        );
+
+    if (!contenidoMenu) {
+        console.error(
+            "No se encontró .menu-mobile-contenido"
+        );
+        return;
+    }
+
+    contenidoMenu.innerHTML = `
+        <a
+            class="enlace-mobile-principal"
+            href="index.html#inicio">
+            Inicio
+        </a>
+
+        <div class="grupo-menu-mobile">
+
+            <button
+                class="boton-submenu-mobile"
+                type="button"
+                aria-expanded="false">
+
+                <span>Hombre</span>
+                <span class="icono-desplegar">+</span>
+
+            </button>
+
+            <div class="submenu-mobile">
+
+                <a href="catalogo.html?genero=hombre">
+                    Ver todo
+                </a>
+
+                <a href="catalogo.html?genero=hombre&categoria=collares">
+                    Collares
+                </a>
+
+                <a href="catalogo.html?genero=hombre&categoria=pulseras">
+                    Pulseras
+                </a>
+
+                <a href="catalogo.html?genero=hombre&categoria=anillos">
+                    Anillos
+                </a>
+
+                <a href="catalogo.html?genero=hombre&categoria=aritos">
+                    Aritos
+                </a>
+
+                <a href="catalogo.html?genero=hombre&categoria=dijes">
+                    Dijes
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="grupo-menu-mobile">
+
+            <button
+                class="boton-submenu-mobile"
+                type="button"
+                aria-expanded="false">
+
+                <span>Mujer</span>
+                <span class="icono-desplegar">+</span>
+
+            </button>
+
+            <div class="submenu-mobile">
+
+                <a href="catalogo.html?genero=mujer">
+                    Ver todo
+                </a>
+
+                <a href="catalogo.html?genero=mujer&categoria=collares">
+                    Collares
+                </a>
+
+                <a href="catalogo.html?genero=mujer&categoria=pulseras">
+                    Pulseras
+                </a>
+
+                <a href="catalogo.html?genero=mujer&categoria=anillos">
+                    Anillos
+                </a>
+
+                <a href="catalogo.html?genero=mujer&categoria=aritos">
+                    Aritos
+                </a>
+
+                <a href="catalogo.html?genero=mujer&categoria=dijes">
+                    Dijes
+                </a>
+
+            </div>
+
+        </div>
+
+        <a
+            class="enlace-mobile-principal"
+            href="como-comprar.html">
+            Cómo comprar
+        </a>
+    `;
+}
 async function iniciarComponentes() {
 
     await Promise.all([
+    cargarComponente(
+        "#navbarCompartido",
+        "componentes/navbar.html"
+    ),
 
-        cargarComponente(
-            "#navbarCompartido",
-            "componentes/navbar.html"
-        ),
+    cargarComponente(
+        "#footerCompartido",
+        "componentes/footer.html"
+    )
+]);
 
-        cargarComponente(
-            "#footerCompartido",
-            "componentes/footer.html"
-        )
+reconstruirContenidoMenuMobile();
 
-    ]);
+iniciarMenuMobile();
 
-    /*
-        Cargamos script.js recién después de
-        insertar navbar y footer en el HTML.
-    */
-
-    cargarScriptPrincipal();
+cargarScriptPrincipal();
 }
 
 

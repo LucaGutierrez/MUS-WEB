@@ -1942,7 +1942,30 @@ body.carrito-abierto {
 
 .fondo-menu-mobile,
 .menu-mobile {
-    display: none;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: min(86%, 390px);
+    height: 100vh;
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: var(--verde-muse);
+    color: var(--dorado-muse);
+
+    transform: translateX(-100%);
+
+    transition: transform 0.4s ease;
+
+    z-index: 1997;
+
+    box-shadow: 15px 0 40px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -2106,7 +2129,8 @@ body.carrito-abierto {
     /* ENCABEZADO */
 
     .menu-mobile-encabezado {
-        min-height: 82px;
+    flex-shrink: 0;
+    min-height: 82px;
 
         padding: 0 24px;
 
@@ -2160,13 +2184,17 @@ body.carrito-abierto {
 
     /* ENLACES */
 
-    .menu-mobile-contenido {
-        flex: 1;
+.menu-mobile-contenido {
+    flex: 1 1 auto;
+    min-height: 0;
 
-        padding: 14px 24px;
+    padding: 14px 24px 30px;
 
-        overflow-y: auto;
-    }
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    -webkit-overflow-scrolling: touch;
+}
 
     .enlace-mobile-principal,
     .boton-submenu-mobile {
@@ -2252,8 +2280,10 @@ body.carrito-abierto {
 
     /* MARCA ABAJO */
 
-    .menu-mobile-marca {
-        padding: 22px 24px 28px;
+   .menu-mobile-marca {
+    flex-shrink: 0;
+
+    padding: 22px 24px 28px;
 
         border-top: 1px solid rgba(200, 169, 106, 0.22);
     }
