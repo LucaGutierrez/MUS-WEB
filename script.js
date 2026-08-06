@@ -158,9 +158,23 @@ function cerrarPanelCarrito() {
 }
 
 
-if (abrirCarrito) {
-    abrirCarrito.addEventListener("click", abrirPanelCarrito);
-}
+/*
+    El botón del carrito está dentro del navbar compartido,
+    que se carga después. Por eso usamos delegación de eventos.
+*/
+
+document.addEventListener("click", (evento) => {
+
+    const botonAbrirCarrito =
+        evento.target.closest("#abrirCarrito");
+
+    if (!botonAbrirCarrito) {
+        return;
+    }
+
+    abrirPanelCarrito();
+
+});
 
 if (cerrarCarrito) {
     cerrarCarrito.addEventListener("click", cerrarPanelCarrito);
@@ -233,15 +247,24 @@ function actualizarCarrito() {
     if (
         !carritoProductos ||
         !carritoVacio ||
-        !carritoResumen ||
-        !contadorCarrito
+        !carritoResumen
     ) {
         return;
     }
 
     const cantidadTotal = calcularCantidadTotal();
 
-    contadorCarrito.textContent = cantidadTotal;
+    /*
+        El contador pertenece al navbar compartido.
+        Puede tardar un poco más en aparecer.
+    */
+
+    const contadorActual =
+        document.getElementById("contadorCarrito");
+
+    if (contadorActual) {
+        contadorActual.textContent = cantidadTotal;
+    }
 
     carritoProductos.innerHTML = "";
 
@@ -333,8 +356,17 @@ function actualizarCarrito() {
     });
 
 
-    precioTotalCarrito.textContent =
-        formatearPrecio(calcularPrecioTotal());
+    const precioTotalActual =
+    document.getElementById("precioTotalCarrito");
+
+if (precioTotalActual) {
+
+    precioTotalActual.textContent =
+        formatearPrecio(
+            calcularPrecioTotal()
+        );
+
+}
 
     guardarCarrito();
 
@@ -344,22 +376,68 @@ function actualizarCarrito() {
 function agregarAlCarrito(productoNuevo) {
 
     const productoExistente = carrito.find(
-        (producto) => producto.id === productoNuevo.id
+        producto => producto.id === productoNuevo.id
     );
+
 
     if (productoExistente) {
 
-        productoExistente.cantidad +=
-            productoNuevo.cantidad || 1;
+        const nuevaCantidad =
+            productoExistente.cantidad +
+            (productoNuevo.cantidad || 1);
+
+        const stockDisponible =
+            Number(productoNuevo.stock || productoExistente.stock || 0);
+
+
+        if (
+            stockDisponible > 0 &&
+            nuevaCantidad > stockDisponible
+        ) {
+
+            productoExistente.cantidad =
+                stockDisponible;
+
+            alert(
+                `Solo hay ${stockDisponible} unidades disponibles.`
+            );
+
+        } else {
+
+            productoExistente.cantidad =
+                nuevaCantidad;
+
+        }
+
+
+        productoExistente.stock =
+            stockDisponible;
 
     } else {
 
+        const cantidadInicial =
+            productoNuevo.cantidad || 1;
+
+        const stockDisponible =
+            Number(productoNuevo.stock || 0);
+
+
         carrito.push({
+
             ...productoNuevo,
-            cantidad: productoNuevo.cantidad || 1
+
+            cantidad:
+                stockDisponible > 0
+                    ? Math.min(
+                        cantidadInicial,
+                        stockDisponible
+                    )
+                    : cantidadInicial
+
         });
 
     }
+
 
     guardarCarrito();
     actualizarCarrito();
@@ -367,22 +445,6 @@ function agregarAlCarrito(productoNuevo) {
 
 }
 
-
-/*
-    Esta función queda disponible para usarla
-    cuando creemos los productos.
-
-    Ejemplo futuro:
-
-    agregarAlCarrito({
-        id: "anillo-001",
-        nombre: "Anillo MUSÉ",
-        descripcion: "Plata 925",
-        precio: 35000,
-        imagen: "imagenes web/anillo-muse.png",
-        cantidad: 1
-    });
-*/
 
 window.agregarAlCarrito = agregarAlCarrito;
 
@@ -411,8 +473,28 @@ if (carritoProductos) {
         }
 
         if (accion === "sumar") {
-            producto.cantidad += 1;
-        }
+
+        const stockDisponible =
+        Number(producto.stock || 0);
+
+
+        if (
+          stockDisponible > 0 &&
+         producto.cantidad >= stockDisponible
+        ) {
+
+            alert(
+          `Solo hay ${stockDisponible} unidades disponibles.`
+         );
+
+         return;
+
+    }
+
+
+    producto.cantidad += 1;
+
+}
 
         if (accion === "restar") {
 
@@ -463,3 +545,9 @@ if (iniciarCompra) {
 /* Mostrar el carrito guardado al cargar la página */
 
 actualizarCarrito();
+
+window.setTimeout(() => {
+
+    actualizarCarrito();
+
+}, 300);

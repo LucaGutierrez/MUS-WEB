@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Producto | MUSÉ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="producto.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR COMPARTIDO -->
+
+    <div id="navbarCompartido"></div>
+
+
+    <!-- PRODUCTO -->
+
+    <main
+        class="pagina-producto"
+        id="paginaProducto">
+
+        <section class="producto-detalle">
+
+            <!-- GALERÍA -->
+
+            <div class="producto-galeria">
+
+                <div
+                    class="producto-miniaturas"
+                    id="productoMiniaturas">
+                </div>
+
+                <div class="producto-imagen-principal">
+
+                    <img
+                        id="imagenPrincipalProducto"
+                        src=""
+                        alt="">
+
+                </div>
+
+            </div>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div class="producto-informacion">
+
+                <p
+                    class="producto-categoria"
+                    id="categoriaProducto">
+                </p>
+
+                <h1 id="nombreProducto">
+                    Cargando producto...
+                </h1>
+
+                <p
+                    class="producto-material"
+                    id="materialProducto">
+                </p>
+
+                <p
+                    class="producto-precio"
+                    id="precioProducto">
+                </p>
+
+                <p
+                    class="producto-descripcion"
+                    id="descripcionProducto">
+                </p>
+
+
+                <!-- COLOR -->
+
+                <div
+                    class="producto-opcion"
+                    id="contenedorColores">
+
+                    <div class="producto-opcion-encabezado">
+
+                        <span>Color</span>
+
+                        <strong id="colorSeleccionado">
+                            Seleccioná un color
+                        </strong>
+
+                    </div>
+
+                    <div
+                        class="producto-opciones"
+                        id="opcionesColores">
+                    </div>
+
+                </div>
+
+
+                <!-- TALLE -->
+
+                <div
+                    class="producto-opcion"
+                    id="contenedorTalles">
+
+                    <div class="producto-opcion-encabezado">
+
+                        <span>Talle</span>
+
+                        <strong id="talleSeleccionado">
+                            Seleccioná un talle
+                        </strong>
+
+                    </div>
+
+                    <div
+                        class="producto-opciones"
+                        id="opcionesTalles">
+                    </div>
+
+                </div>
+
+
+                <!-- STOCK -->
+
+                <p
+                    class="producto-stock"
+                    id="stockProducto">
+
+                    Consultando disponibilidad...
+
+                </p>
+
+
+                <!-- CANTIDAD -->
+
+                <div class="producto-cantidad">
+
+                    <span>Cantidad</span>
+
+                    <div class="selector-cantidad">
+
+                        <button
+                            type="button"
+                            id="restarCantidad"
+                            aria-label="Restar una unidad">
+
+                            −
+
+                        </button>
+
+                        <span id="cantidadProducto">
+                            1
+                        </span>
+
+                        <button
+                            type="button"
+                            id="sumarCantidad"
+                            aria-label="Sumar una unidad">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AGREGAR AL CARRITO -->
+
+                <button
+                    class="boton-agregar-producto"
+                    id="agregarProductoCarrito"
+                    type="button"
+                    disabled>
+
+                    Seleccioná las opciones
+
+                </button>
+
+
+                <!-- INFORMACIÓN ADICIONAL -->
+
+                <div class="producto-datos">
+
+                    <div>
+
+                        <span>Material</span>
+
+                        <strong id="datoMaterialProducto">
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Código</span>
+
+                        <strong id="codigoProducto">
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Peso</span>
+
+                        <strong id="pesoProducto">
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MENSAJE DE ERROR -->
+
+    <section
+        class="producto-error oculto"
+        id="productoError">
+
+        <h1>
+            No encontramos este producto
+        </h1>
+
+        <p>
+            Puede que haya sido eliminado
+            o que el enlace sea incorrecto.
+        </p>
+
+        <a href="catalogo.html">
+            Volver al catálogo
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER COMPARTIDO -->
+
+    <div id="footerCompartido"></div>
+
+
+    <!-- CARRITO -->
+
+    <div
+        class="fondo-carrito"
+        id="fondoCarrito">
+    </div>
+
+    <aside
+        class="carrito-lateral"
+        id="carritoLateral"
+        aria-hidden="true">
+
+        <div class="carrito-encabezado">
+
+            <div>
+
+                <p class="carrito-etiqueta">
+                    TU SELECCIÓN
+                </p>
+
+                <h2>
+                    Carrito de compras
+                </h2>
+
+            </div>
+
+            <button
+                class="cerrar-carrito"
+                id="cerrarCarrito"
+                type="button"
+                aria-label="Cerrar carrito">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true">
+
+                    <line
+                        x1="5"
+                        y1="5"
+                        x2="19"
+                        y2="19">
+                    </line>
+
+                    <line
+                        x1="19"
+                        y1="5"
+                        x2="5"
+                        y2="19">
+                    </line>
+
+                </svg>
+
+            </button>
+
+        </div>
+
+        <div
+            class="carrito-productos"
+            id="carritoProductos">
+        </div>
+
+        <div
+            class="carrito-vacio"
+            id="carritoVacio">
+
+            <h3>
+                Tu carrito está vacío
+            </h3>
+
+            <p>
+                Todavía no agregaste ningún producto.
+            </p>
+
+            <button
+                class="boton-seguir-comprando"
+                id="seguirComprando"
+                type="button">
+
+                Seguir comprando
+
+            </button>
+
+        </div>
+
+        <div
+            class="carrito-resumen"
+            id="carritoResumen">
+
+            <div class="fila-total">
+
+                <span>Total</span>
+
+                <strong id="precioTotalCarrito">
+                    $0
+                </strong>
+
+            </div>
+
+            <p class="texto-envio-carrito">
+                El costo de envío se calculará
+                al iniciar la compra.
+            </p>
+
+            <button
+                class="boton-iniciar-compra"
+                id="iniciarCompra"
+                type="button">
+
+                Iniciar compra
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="componentes.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <script src="script.js"></script>
+
+    <script src="producto.js"></script>
+
+</body>
+
+</html>
+

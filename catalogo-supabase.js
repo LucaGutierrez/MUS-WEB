@@ -96,6 +96,32 @@ function obtenerTituloCatalogo() {
    CREAR TARJETA
 =========================== */
 
+function obtenerStockReal(producto) {
+
+    if (
+        producto.tiene_variantes &&
+        Array.isArray(producto.variantes_producto)
+    ) {
+
+        return producto.variantes_producto.reduce(
+            (total, variante) => {
+
+                if (!variante.activo) {
+                    return total;
+                }
+
+                return total + Number(variante.stock || 0);
+
+            },
+            0
+        );
+
+    }
+
+    return Number(producto.stock || 0);
+
+}
+
 function crearTarjetaProducto(producto) {
 
     const tarjeta =
@@ -103,8 +129,11 @@ function crearTarjetaProducto(producto) {
 
     tarjeta.className = "producto-card";
 
-    const hayStock =
-        producto.stock > 0;
+    const stockReal =
+    obtenerStockReal(producto);
+
+const hayStock =
+    stockReal > 0;
 
     let textoGenero = "Unisex";
 
@@ -119,76 +148,79 @@ function crearTarjetaProducto(producto) {
 
     tarjeta.innerHTML = `
 
-        <div class="producto-card-imagen">
+<a
+    href="producto.html?id=${producto.id}"
+    class="producto-card-link">
 
-            <span class="producto-card-etiqueta">
-                ${textoGenero}
-            </span>
+    <div class="producto-card-imagen">
 
-            <img
-                src="${producto.imagen}"
-                alt="${producto.nombre}"
-                loading="lazy">
+        <span class="producto-card-etiqueta">
+            ${textoGenero}
+        </span>
 
-        </div>
+        <img
+            src="${producto.imagen}"
+            alt="${producto.nombre}"
+            loading="lazy">
 
+    </div>
 
-        <div class="producto-card-info">
+</a>
 
-            <h2>
-                ${producto.nombre}
-            </h2>
+<div class="producto-card-info">
 
-            <p class="producto-card-material">
-                ${producto.material || ""}
-            </p>
+    <h2>
 
-            <p class="producto-card-descripcion">
-                ${producto.descripcion || ""}
-            </p>
+        <a
+            href="producto.html?id=${producto.id}"
+            class="producto-titulo-link">
 
-            <strong class="producto-card-precio">
-                ${formatearPrecioProducto(producto.precio)}
-            </strong>
+            ${producto.nombre}
 
-            <p class="producto-stock ${hayStock ? "" : "sin-stock"}">
+        </a>
 
-                ${
-                    hayStock
-                        ? `${producto.stock} unidades disponibles`
-                        : "Sin stock"
-                }
+    </h2>
 
-            </p>
+    <p class="producto-card-material">
+        ${producto.material || ""}
+    </p>
 
-            <div class="producto-card-acciones">
+    <p class="producto-card-descripcion">
+        ${producto.descripcion || ""}
+    </p>
 
-                <a
-                    href="producto.html?id=${producto.id}"
-                    class="ver-detalle">
+    <strong class="producto-card-precio">
+        ${formatearPrecioProducto(producto.precio)}
+    </strong>
 
-                    Ver producto
+    <p class="producto-stock ${hayStock ? "" : "sin-stock"}">
 
-                </a>
+        ${
+            hayStock
+                ? `${stockReal} unidades disponibles`
+                : "Sin stock"
+        }
 
-                <button
-                    class="agregar-desde-listado"
-                    type="button"
-                    data-producto-id="${producto.id}"
-                    ${hayStock ? "" : "disabled"}>
+    </p>
 
-                    ${
-                        hayStock
-                            ? "Agregar al carrito"
-                            : "Sin stock"
-                    }
+    <div class="producto-card-acciones">
 
-                </button>
+        <a
+            href="producto.html?id=${producto.id}"
+            class="ver-detalle ${hayStock ? "" : "producto-agotado"}">
 
-            </div>
+            ${
+                hayStock
+                    ? "Ver producto"
+                    : "Sin stock"
+            }
 
-        </div>
-    `;
+        </a>
+
+    </div>
+
+</div>
+`;
 
     return tarjeta;
 
@@ -282,9 +314,16 @@ async function cargarCatalogo() {
     `;
 
 
-    let consulta = clienteSupabase
-        .from("productos")
-        .select("*")
+   let consulta = clienteSupabase
+    .from("productos")
+    .select(`
+        *,
+        variantes_producto(
+            id,
+            stock,
+            activo
+        )
+    `)
         .eq("activo", true)
         .order("id", {
             ascending: true
@@ -447,95 +486,6 @@ if (ordenProductos) {
 
 }
 
-
-/* ===========================
-   AGREGAR AL CARRITO
-=========================== */
-
-grillaProductos.addEventListener(
-    "click",
-    evento => {
-
-        const boton = evento.target.closest(
-            "[data-producto-id]"
-        );
-
-        if (!boton) {
-            return;
-        }
-
-
-        const idProducto =
-            Number(
-                boton.dataset.productoId
-            );
-
-
-        const producto =
-            productosCargados.find(
-                item =>
-                    Number(item.id) ===
-                    idProducto
-            );
-
-
-        if (!producto) {
-
-            alert(
-                "No se pudo encontrar el producto."
-            );
-
-            return;
-
-        }
-
-
-        if (producto.stock <= 0) {
-
-            alert(
-                "Este producto no tiene stock disponible."
-            );
-
-            return;
-
-        }
-
-
-        if (
-            typeof window.agregarAlCarrito !==
-            "function"
-        ) {
-
-            console.error(
-                "No se encontró la función agregarAlCarrito."
-            );
-
-            return;
-
-        }
-
-
-        window.agregarAlCarrito({
-
-            id: String(producto.id),
-
-            nombre: producto.nombre,
-
-            descripcion:
-                producto.material || "",
-
-            precio: producto.precio,
-
-            imagen: producto.imagen,
-
-            cantidad: 1,
-
-            stock: producto.stock
-
-        });
-
-    }
-);
 
 
 /* ===========================

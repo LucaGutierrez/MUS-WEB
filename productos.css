@@ -149,10 +149,14 @@
     font-weight: 600;
 }
 
-.producto-card-acciones {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+.producto-card-acciones{
+    display:flex;
+    justify-content:center;
+    margin-top:6px;
+}
+
+.producto-card-acciones .ver-detalle{
+    width:220px;
 }
 
 .producto-card-acciones a,
@@ -357,4 +361,49 @@
 .catalogo-vacio a:hover {
     color: #0f3d34;
     background: transparent;
+}
+
+/* ===========================
+   LINK DE LA TARJETA
+=========================== */
+
+.producto-card-link{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}
+
+.producto-titulo-link{
+
+    color:inherit;
+    text-decoration:none;
+
+    transition:.3s ease;
+
+}
+
+.producto-card:hover .producto-titulo-link{
+
+    color:var(--dorado-muse);
+
+}
+
+.producto-card-link img{
+
+    transition:
+        transform .6s ease,
+        filter .6s ease;
+
+}
+
+.producto-card:hover .producto-card-link img{
+
+    transform:scale(1.05);
+
+}
+
+.producto-card-link:hover{
+
+    cursor:pointer;
+
 }
